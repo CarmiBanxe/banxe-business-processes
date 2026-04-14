@@ -1,0 +1,7 @@
+# BaaS SLA Monitoring
+type: BusinessProcess
+domain: baas
+name: BaaS SLA Monitoring
+source: manual (not yet in ArchiMate model)
+documentation: |
+  Tenant SLA tracking. Uptime, latency, error rate dashboards.

@@ -1,0 +1,7 @@
+# Card Replacement
+type: BusinessProcess
+domain: card-lifecycle
+name: Card Replacement
+source: manual (not yet in ArchiMate model)
+documentation: |
+  Lost/stolen replacement flow. New PAN, migrate recurring mandates.

@@ -3,3 +3,4 @@ type: BusinessActor
 domain: onboarding
 name: KYC Analyst
 description: Customer due diligence and identity verification
+archimate_id: pending-next-export

@@ -3,3 +3,4 @@ type: BusinessActor
 domain: compliance
 name: Compliance Officer
 description: Ensures regulatory compliance
+archimate_id: pending-next-export

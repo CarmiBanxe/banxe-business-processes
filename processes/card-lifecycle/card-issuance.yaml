@@ -1,0 +1,7 @@
+# Card Issuance
+type: BusinessProcess
+domain: card-lifecycle
+name: Card Issuance
+source: manual (not yet in ArchiMate model)
+documentation: |
+  Virtual/physical card creation via Hyperswitch Card Vault. PCI DSS scope.

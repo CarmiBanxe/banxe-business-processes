@@ -3,3 +3,4 @@ type: BusinessActor
 domain: payments
 name: Payment Operations
 description: Payment processing and settlement
+archimate_id: pending-next-export

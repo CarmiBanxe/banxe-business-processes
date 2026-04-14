@@ -1,0 +1,7 @@
+# Card Activation
+type: BusinessProcess
+domain: card-lifecycle
+name: Card Activation
+source: manual (not yet in ArchiMate model)
+documentation: |
+  Customer activates card via app or IVR. 3DS enrolment trigger.

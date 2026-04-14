@@ -1,0 +1,7 @@
+# Operational Risk Monitoring
+type: BusinessProcess
+domain: risk
+name: Operational Risk Monitoring
+source: manual (not yet in ArchiMate model)
+documentation: |
+  Daily monitoring of key risk indicators. Basel III pillar 2 aligned.

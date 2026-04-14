@@ -3,3 +3,4 @@ type: BusinessActor
 domain: card-lifecycle
 name: Card Operations
 description: Card issuance activation and blocking
+archimate_id: pending-next-export

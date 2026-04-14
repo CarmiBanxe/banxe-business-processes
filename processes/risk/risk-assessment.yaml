@@ -1,0 +1,7 @@
+# Risk Assessment
+type: BusinessProcess
+domain: risk
+name: Risk Assessment
+source: manual (not yet in ArchiMate model)
+documentation: |
+  Customer risk scoring at onboarding. CDD/EDD tiering per MLR 2017 Reg.28.

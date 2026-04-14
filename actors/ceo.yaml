@@ -3,3 +3,4 @@ type: BusinessActor
 domain: strategy
 name: CEO
 description: Chief Executive Officer
+archimate_id: pending-next-export

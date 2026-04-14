@@ -1,0 +1,7 @@
+# BaaS Settlement
+type: BusinessProcess
+domain: baas
+name: BaaS Settlement
+source: manual (not yet in ArchiMate model)
+documentation: |
+  Daily tenant settlement. Fee calculation, revenue share, reconciliation.

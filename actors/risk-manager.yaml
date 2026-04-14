@@ -3,3 +3,4 @@ type: BusinessActor
 domain: risk
 name: Risk Manager
 description: Operational and financial risk management
+archimate_id: pending-next-export

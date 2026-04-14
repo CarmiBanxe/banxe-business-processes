@@ -3,3 +3,4 @@ type: BusinessActor
 domain: compliance
 name: MLRO
 description: Money Laundering Reporting Officer
+archimate_id: pending-next-export
