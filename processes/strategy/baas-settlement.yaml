@@ -1,7 +1,11 @@
 # BaaS Settlement
+archimate_id: id-baas-settlement
 type: BusinessProcess
-domain: baas
+domain: strategy
 name: BaaS Settlement
-source: manual (not yet in ArchiMate model)
 documentation: |
   Daily tenant settlement. Fee calculation, revenue share, reconciliation.
+relationships:
+  - name: Ledger Service
+    type: ApplicationComponent
+    relation: Flow

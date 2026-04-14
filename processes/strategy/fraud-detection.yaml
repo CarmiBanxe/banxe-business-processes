@@ -1,7 +1,11 @@
 # Fraud Detection
+archimate_id: id-fraud-detection
 type: BusinessProcess
-domain: risk
+domain: strategy
 name: Fraud Detection
-source: manual (not yet in ArchiMate model)
 documentation: |
   Real-time fraud scoring via Jube ML engine. PSR APP 2024 compliant.
+relationships:
+  - name: Jube TM
+    type: TechnologyService
+    relation: Composition

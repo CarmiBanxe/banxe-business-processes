@@ -1,7 +1,11 @@
 # Risk Assessment
+archimate_id: id-risk-assessment
 type: BusinessProcess
-domain: risk
+domain: strategy
 name: Risk Assessment
-source: manual (not yet in ArchiMate model)
 documentation: |
   Customer risk scoring at onboarding. CDD/EDD tiering per MLR 2017 Reg.28.
+relationships:
+  - name: KYC Service
+    type: ApplicationComponent
+    relation: Flow

@@ -1,7 +1,0 @@
-# Card Blocking
-type: BusinessProcess
-domain: card-lifecycle
-name: Card Blocking
-source: manual (not yet in ArchiMate model)
-documentation: |
-  Fraud or customer-initiated block. Real-time via Hyperswitch API.

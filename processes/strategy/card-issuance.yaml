@@ -1,0 +1,11 @@
+# Card Issuance
+archimate_id: id-card-issuance
+type: BusinessProcess
+domain: strategy
+name: Card Issuance
+documentation: |
+  Virtual/physical card creation via Hyperswitch Card Vault. PCI DSS scope.
+relationships:
+  - name: Hyperswitch Card Vault
+    type: ApplicationComponent
+    relation: Composition

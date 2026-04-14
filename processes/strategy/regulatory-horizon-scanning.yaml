@@ -1,7 +1,7 @@
 # Regulatory Horizon Scanning
+archimate_id: id-horizon-scanning
 type: BusinessProcess
 domain: strategy
 name: Regulatory Horizon Scanning
-source: manual (not yet in ArchiMate model)
 documentation: |
   FCA/PRA/EBA regulatory change monitoring. Impact assessment workflow.

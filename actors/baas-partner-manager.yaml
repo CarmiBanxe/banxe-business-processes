@@ -3,4 +3,3 @@ type: BusinessActor
 domain: baas
 name: BaaS Partner Manager
 description: BaaS tenant onboarding and SLAs
-archimate_id: pending-next-export

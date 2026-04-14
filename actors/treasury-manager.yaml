@@ -3,4 +3,3 @@ type: BusinessActor
 domain: treasury
 name: Treasury Manager
 description: Safeguarding accounts and FCA reporting
-archimate_id: pending-next-export

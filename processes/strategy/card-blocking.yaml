@@ -1,0 +1,11 @@
+# Card Blocking
+archimate_id: id-card-blocking
+type: BusinessProcess
+domain: strategy
+name: Card Blocking
+documentation: |
+  Fraud or customer-initiated block. Real-time via Hyperswitch API.
+relationships:
+  - name: Hyperswitch App Server
+    type: ApplicationComponent
+    relation: Composition

@@ -1,0 +1,11 @@
+# Card Activation
+archimate_id: id-card-activation
+type: BusinessProcess
+domain: strategy
+name: Card Activation
+documentation: |
+  Customer activates card via app or IVR. 3DS enrolment trigger.
+relationships:
+  - name: Hyperswitch App Server
+    type: ApplicationComponent
+    relation: Composition

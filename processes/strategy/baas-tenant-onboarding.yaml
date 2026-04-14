@@ -1,7 +1,11 @@
 # BaaS Tenant Onboarding
+archimate_id: id-baas-onboarding
 type: BusinessProcess
-domain: baas
+domain: strategy
 name: BaaS Tenant Onboarding
-source: manual (not yet in ArchiMate model)
 documentation: |
   White-label tenant setup. API keys, webhook config, sandbox provisioning.
+relationships:
+  - name: IAM Service
+    type: ApplicationComponent
+    relation: Flow

@@ -1,7 +1,7 @@
 # OKR Planning
+archimate_id: id-okr-planning
 type: BusinessProcess
 domain: strategy
 name: OKR Planning
-source: manual (not yet in ArchiMate model)
 documentation: |
   Quarterly OKR cycle. CEO sets company OKRs, teams derive key results.

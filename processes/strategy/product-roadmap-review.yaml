@@ -1,7 +1,7 @@
 # Product Roadmap Review
+archimate_id: id-roadmap-review
 type: BusinessProcess
 domain: strategy
 name: Product Roadmap Review
-source: manual (not yet in ArchiMate model)
 documentation: |
   Monthly product review. Feature prioritisation against compliance deadlines.
