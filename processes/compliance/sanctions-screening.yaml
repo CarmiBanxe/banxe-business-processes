@@ -1,0 +1,11 @@
+# Sanctions Screening
+archimate_id: id-sanctions-screening-process
+type: BusinessProcess
+domain: compliance
+name: Sanctions Screening
+documentation: |
+  OFAC/UN/EU/UK sanctions and PEP check. Triggered at onboarding and on each payment. MLR 2017 Reg.28.
+relationships:
+  - name: Banxe Screener
+    type: ApplicationComponent
+    relation: Composition

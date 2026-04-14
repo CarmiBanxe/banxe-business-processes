@@ -1,0 +1,11 @@
+# Payment Processing
+archimate_id: id-payment-processing-process
+type: BusinessProcess
+domain: payments
+name: Payment Processing
+documentation: |
+  FPS/SEPA payment lifecycle: initiate → screen → authorise → settle → notify. PSR 2017.
+relationships:
+  - name: Payment Service
+    type: ApplicationComponent
+    relation: Composition

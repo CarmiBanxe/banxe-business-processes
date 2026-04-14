@@ -1,0 +1,5 @@
+# CEO
+type: BusinessActor
+domain: strategy
+name: CEO
+description: Chief Executive Officer

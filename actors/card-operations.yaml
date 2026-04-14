@@ -1,0 +1,5 @@
+# Card Operations
+type: BusinessActor
+domain: card-lifecycle
+name: Card Operations
+description: Card issuance activation and blocking

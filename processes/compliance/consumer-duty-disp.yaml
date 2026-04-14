@@ -1,0 +1,7 @@
+# Consumer Duty DISP
+archimate_id: id-consumer-duty-process
+type: BusinessProcess
+domain: compliance
+name: Consumer Duty DISP
+documentation: |
+  FCA DISP complaints handling under Consumer Duty (PS22/9). 3-day acknowledgement + 8-week resolution SLA.

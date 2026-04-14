@@ -1,0 +1,5 @@
+# BaaS Partner Manager
+type: BusinessActor
+domain: baas
+name: BaaS Partner Manager
+description: BaaS tenant onboarding and SLAs

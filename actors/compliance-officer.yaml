@@ -1,0 +1,5 @@
+# Compliance Officer
+type: BusinessActor
+domain: compliance
+name: Compliance Officer
+description: Ensures regulatory compliance

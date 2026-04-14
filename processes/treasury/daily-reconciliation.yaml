@@ -1,0 +1,11 @@
+# Daily Reconciliation
+archimate_id: id-daily-recon-process
+type: BusinessProcess
+domain: treasury
+name: Daily Reconciliation
+documentation: |
+  CASS 7.15.17R — daily internal (Midaz) vs external (CAMT.053) reconciliation. Cron at 23:50 UTC.
+relationships:
+  - name: Tri-Party Reconciliation Engine
+    type: ApplicationComponent
+    relation: Composition

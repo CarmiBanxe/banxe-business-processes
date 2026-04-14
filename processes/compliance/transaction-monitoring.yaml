@@ -1,0 +1,11 @@
+# Transaction Monitoring
+archimate_id: id-tx-monitoring-process
+type: BusinessProcess
+domain: compliance
+name: Transaction Monitoring
+documentation: |
+  Real-time transaction screening via Jube probabilistic ML engine. PSR APP 2024 / MLR 2017.
+relationships:
+  - name: AML / Fraud Service
+    type: ApplicationComponent
+    relation: Composition

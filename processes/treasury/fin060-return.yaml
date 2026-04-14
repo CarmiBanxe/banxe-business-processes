@@ -1,0 +1,11 @@
+# FIN060 Return
+archimate_id: id-fin060-process
+type: BusinessProcess
+domain: treasury
+name: FIN060 Return
+documentation: |
+  FCA regulatory return FIN060 — safeguarding funds report. Annual submission via RegData.
+relationships:
+  - name: Safeguarding Service
+    type: ApplicationComponent
+    relation: Composition

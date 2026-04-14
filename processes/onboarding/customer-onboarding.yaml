@@ -1,0 +1,11 @@
+# Customer Onboarding
+archimate_id: id-onboarding-process
+type: BusinessProcess
+domain: onboarding
+name: Customer Onboarding
+documentation: |
+  EMR 2011 Reg.4 — customer creation + KYC + agreement lifecycle.
+relationships:
+  - name: KYC Service
+    type: ApplicationComponent
+    relation: Composition

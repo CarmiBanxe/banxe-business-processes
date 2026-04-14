@@ -1,0 +1,5 @@
+# Risk Manager
+type: BusinessActor
+domain: risk
+name: Risk Manager
+description: Operational and financial risk management

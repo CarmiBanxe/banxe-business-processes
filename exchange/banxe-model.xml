@@ -1,0 +1,902 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model
+  xmlns="http://www.opengroup.org/xsd/archimate/3.0/"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.opengroup.org/xsd/archimate/3.0/ http://www.opengroup.org/xsd/archimate/3.1/archimate3_Diagram.xsd"
+  identifier="id-banxe-emi-model"
+  version="3.1">
+
+  <name xml:lang="en">Banxe EMI Architecture Model</name>
+
+  <propertyDefinitions>
+    <propertyDefinition identifier="prop-domain" type="string">
+      <name xml:lang="en">banxe-domain</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="prop-module" type="string">
+      <name xml:lang="en">banxe-module</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="prop-status" type="string">
+      <name xml:lang="en">banxe-status</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="prop-host" type="string">
+      <name xml:lang="en">banxe-host</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="prop-license" type="string">
+      <name xml:lang="en">banxe-license</name>
+    </propertyDefinition>
+  </propertyDefinitions>
+
+  <elements>
+    <!-- Application Layer — Core Services -->
+    <element identifier="id-api-gateway" xsi:type="ApplicationComponent">
+      <name xml:lang="en">API Gateway</name>
+      <documentation xml:lang="en">FastAPI REST API layer (IL-046). 78 endpoints across 21 routers.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-domain">
+          <value xml:lang="en">api</value>
+        </property>
+        <property propertyDefinitionRef="prop-module">
+          <value xml:lang="en">api/main.py</value>
+        </property>
+        <property propertyDefinitionRef="prop-status">
+          <value xml:lang="en">ACTIVE</value>
+        </property>
+      </properties>
+    </element>
+
+    <element identifier="id-safeguarding-service" xsi:type="ApplicationComponent">
+      <name xml:lang="en">Safeguarding Service</name>
+      <documentation xml:lang="en">CASS 15 safeguarding: daily reconciliation, breach detection, FIN060 return. Sprint 12.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-domain">
+          <value xml:lang="en">safeguarding</value>
+        </property>
+        <property propertyDefinitionRef="prop-module">
+          <value xml:lang="en">src/safeguarding/</value>
+        </property>
+        <property propertyDefinitionRef="prop-status">
+          <value xml:lang="en">ACTIVE</value>
+        </property>
+      </properties>
+    </element>
+
+    <element identifier="id-recon-engine" xsi:type="ApplicationComponent">
+      <name xml:lang="en">Tri-Party Reconciliation Engine</name>
+      <documentation xml:lang="en">CASS 7.15.17R daily tri-party recon: rails vs Midaz GL vs safeguarding bank. GAP-010.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-domain">
+          <value xml:lang="en">settlement</value>
+        </property>
+        <property propertyDefinitionRef="prop-module">
+          <value xml:lang="en">src/settlement/reconciler_engine.py</value>
+        </property>
+        <property propertyDefinitionRef="prop-status">
+          <value xml:lang="en">ACTIVE</value>
+        </property>
+      </properties>
+    </element>
+
+    <element identifier="id-kyc-service" xsi:type="ApplicationComponent">
+      <name xml:lang="en">KYC Service</name>
+      <documentation xml:lang="en">KYC workflow lifecycle: create → documents → EDD → approve/reject. Ballerine adapter.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-domain">
+          <value xml:lang="en">kyc</value>
+        </property>
+        <property propertyDefinitionRef="prop-module">
+          <value xml:lang="en">services/kyc/</value>
+        </property>
+        <property propertyDefinitionRef="prop-status">
+          <value xml:lang="en">ACTIVE</value>
+        </property>
+      </properties>
+    </element>
+
+    <element identifier="id-payment-service" xsi:type="ApplicationComponent">
+      <name xml:lang="en">Payment Service</name>
+      <documentation xml:lang="en">FPS + SEPA CT + SEPA Instant via Modulr sandbox. Webhook signature verification.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-domain">
+          <value xml:lang="en">payment</value>
+        </property>
+        <property propertyDefinitionRef="prop-module">
+          <value xml:lang="en">services/payment/</value>
+        </property>
+        <property propertyDefinitionRef="prop-status">
+          <value xml:lang="en">ACTIVE+STUB</value>
+        </property>
+      </properties>
+    </element>
+
+    <element identifier="id-aml-service" xsi:type="ApplicationComponent">
+      <name xml:lang="en">AML / Fraud Service</name>
+      <documentation xml:lang="en">FraudAML pipeline with Jube (self-hosted ML). PSR APP 2024 compliant.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-domain">
+          <value xml:lang="en">fraud</value>
+        </property>
+        <property propertyDefinitionRef="prop-module">
+          <value xml:lang="en">services/fraud/</value>
+        </property>
+        <property propertyDefinitionRef="prop-status">
+          <value xml:lang="en">ACTIVE</value>
+        </property>
+      </properties>
+    </element>
+
+    <element identifier="id-iam-service" xsi:type="ApplicationComponent">
+      <name xml:lang="en">IAM Service</name>
+      <documentation xml:lang="en">Keycloak OIDC + RBAC. MockIAMAdapter for tests. KeycloakAdapter for production.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-domain">
+          <value xml:lang="en">iam</value>
+        </property>
+        <property propertyDefinitionRef="prop-module">
+          <value xml:lang="en">services/iam/</value>
+        </property>
+        <property propertyDefinitionRef="prop-status">
+          <value xml:lang="en">ACTIVE</value>
+        </property>
+      </properties>
+    </element>
+
+    <element identifier="id-ledger-service" xsi:type="ApplicationComponent">
+      <name xml:lang="en">Ledger Service</name>
+      <documentation xml:lang="en">Midaz CBS adapter. get_balance(), create_transaction(), list_transactions(). S13-01.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-domain">
+          <value xml:lang="en">ledger</value>
+        </property>
+        <property propertyDefinitionRef="prop-module">
+          <value xml:lang="en">services/ledger/</value>
+        </property>
+        <property propertyDefinitionRef="prop-status">
+          <value xml:lang="en">ACTIVE</value>
+        </property>
+      </properties>
+    </element>
+
+    <!-- Application Layer — Compliance &amp; Screening -->
+    <element identifier="id-openclaw-moa-bot" xsi:type="ApplicationComponent">
+      <name xml:lang="en">OpenClaw moa-bot</name>
+      <documentation xml:lang="en">Telegram/HTTP bot @mycarmi_moa_bot. MLRO operator assistant. GMKtec :18789.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-host">
+          <value xml:lang="en">localhost:18789</value>
+        </property>
+        <property propertyDefinitionRef="prop-status">
+          <value xml:lang="en">ACTIVE</value>
+        </property>
+        <property propertyDefinitionRef="prop-license">
+          <value xml:lang="en">Commercial</value>
+        </property>
+      </properties>
+    </element>
+
+    <element identifier="id-openclaw-ctio-bot" xsi:type="ApplicationComponent">
+      <name xml:lang="en">OpenClaw ctio-bot</name>
+      <documentation xml:lang="en">Telegram/HTTP bot for CTIO (Oleg). GMKtec :18791.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-host">
+          <value xml:lang="en">localhost:18791</value>
+        </property>
+        <property propertyDefinitionRef="prop-status">
+          <value xml:lang="en">ACTIVE</value>
+        </property>
+        <property propertyDefinitionRef="prop-license">
+          <value xml:lang="en">Commercial</value>
+        </property>
+      </properties>
+    </element>
+
+    <element identifier="id-banxe-screener" xsi:type="ApplicationComponent">
+      <name xml:lang="en">Banxe Screener</name>
+      <documentation xml:lang="en">Moov Watchman + PEP wrapper. OFAC/UN/EU/UK sanctions + PEP screening. GMKtec :8085.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-host">
+          <value xml:lang="en">localhost:8085</value>
+        </property>
+        <property propertyDefinitionRef="prop-status">
+          <value xml:lang="en">ACTIVE</value>
+        </property>
+      </properties>
+    </element>
+
+    <element identifier="id-yente" xsi:type="ApplicationComponent">
+      <name xml:lang="en">Yente / OpenSanctions</name>
+      <documentation xml:lang="en">OpenSanctions primary sanctions/PEP database (200K+ entities). MIT licence. GMKtec :8086. Phase 3 target.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-host">
+          <value xml:lang="en">localhost:8086</value>
+        </property>
+        <property propertyDefinitionRef="prop-status">
+          <value xml:lang="en">PLANNED</value>
+        </property>
+        <property propertyDefinitionRef="prop-license">
+          <value xml:lang="en">MIT</value>
+        </property>
+      </properties>
+    </element>
+
+    <element identifier="id-pii-proxy" xsi:type="ApplicationComponent">
+      <name xml:lang="en">PII Proxy / Presidio</name>
+      <documentation xml:lang="en">Microsoft Presidio GDPR PII anonymisation proxy. MIT licence. GMKtec :8089.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-host">
+          <value xml:lang="en">localhost:8089</value>
+        </property>
+        <property propertyDefinitionRef="prop-status">
+          <value xml:lang="en">ACTIVE</value>
+        </property>
+        <property propertyDefinitionRef="prop-license">
+          <value xml:lang="en">MIT</value>
+        </property>
+      </properties>
+    </element>
+
+    <element identifier="id-deep-search" xsi:type="ApplicationComponent">
+      <name xml:lang="en">Deep Search</name>
+      <documentation xml:lang="en">Compliance research service. GMKtec :8088.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-host">
+          <value xml:lang="en">localhost:8088</value>
+        </property>
+        <property propertyDefinitionRef="prop-status">
+          <value xml:lang="en">ACTIVE</value>
+        </property>
+      </properties>
+    </element>
+
+    <element identifier="id-auto-verify-api" xsi:type="ApplicationComponent">
+      <name xml:lang="en">Auto-Verify API</name>
+      <documentation xml:lang="en">Agent response verification API. GMKtec :8094.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-host">
+          <value xml:lang="en">localhost:8094</value>
+        </property>
+        <property propertyDefinitionRef="prop-status">
+          <value xml:lang="en">ACTIVE</value>
+        </property>
+      </properties>
+    </element>
+
+    <!-- Application Layer — Payments (Hyperswitch) -->
+    <element identifier="id-hyperswitch-app" xsi:type="ApplicationComponent">
+      <name xml:lang="en">Hyperswitch App Server</name>
+      <documentation xml:lang="en">Payment orchestration and switch. Apache 2.0. Sprint 9 (P0: env fix). GMKtec :8096.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-host">
+          <value xml:lang="en">localhost:8096</value>
+        </property>
+        <property propertyDefinitionRef="prop-status">
+          <value xml:lang="en">ACTIVE+P0</value>
+        </property>
+        <property propertyDefinitionRef="prop-license">
+          <value xml:lang="en">Apache 2.0</value>
+        </property>
+      </properties>
+    </element>
+
+    <element identifier="id-hyperswitch-control" xsi:type="ApplicationComponent">
+      <name xml:lang="en">Hyperswitch Control Center</name>
+      <documentation xml:lang="en">Payment operations dashboard. Apache 2.0. Sprint 9. GMKtec :8097.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-host">
+          <value xml:lang="en">localhost:8097</value>
+        </property>
+        <property propertyDefinitionRef="prop-status">
+          <value xml:lang="en">ACTIVE</value>
+        </property>
+        <property propertyDefinitionRef="prop-license">
+          <value xml:lang="en">Apache 2.0</value>
+        </property>
+      </properties>
+    </element>
+
+    <element identifier="id-hyperswitch-vault" xsi:type="ApplicationComponent">
+      <name xml:lang="en">Hyperswitch Card Vault</name>
+      <documentation xml:lang="en">PCI-compliant card tokenisation storage. Apache 2.0. Sprint 9 (P0: env fix). GMKtec :8098.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-host">
+          <value xml:lang="en">localhost:8098</value>
+        </property>
+        <property propertyDefinitionRef="prop-status">
+          <value xml:lang="en">ACTIVE+P0</value>
+        </property>
+        <property propertyDefinitionRef="prop-license">
+          <value xml:lang="en">Apache 2.0</value>
+        </property>
+      </properties>
+    </element>
+
+    <!-- Business Processes — Existing -->
+    <element identifier="id-onboarding-process" xsi:type="BusinessProcess">
+      <name xml:lang="en">Customer Onboarding</name>
+      <documentation xml:lang="en">EMR 2011 Reg.4 — customer creation + KYC + agreement lifecycle.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-domain">
+          <value xml:lang="en">customers</value>
+        </property>
+      </properties>
+    </element>
+
+    <element identifier="id-daily-recon-process" xsi:type="BusinessProcess">
+      <name xml:lang="en">Daily Reconciliation</name>
+      <documentation xml:lang="en">CASS 7.15.17R — daily internal (Midaz) vs external (CAMT.053) reconciliation. Cron at 23:50 UTC.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-domain">
+          <value xml:lang="en">safeguarding</value>
+        </property>
+      </properties>
+    </element>
+
+    <element identifier="id-sar-process" xsi:type="BusinessProcess">
+      <name xml:lang="en">SAR Filing</name>
+      <documentation xml:lang="en">POCA 2002 s.330 — Suspicious Activity Report lifecycle: file → MLRO approve → submit NCA.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-domain">
+          <value xml:lang="en">compliance</value>
+        </property>
+      </properties>
+    </element>
+
+    <!-- Business Processes — New -->
+    <element identifier="id-tx-monitoring-process" xsi:type="BusinessProcess">
+      <name xml:lang="en">Transaction Monitoring</name>
+      <documentation xml:lang="en">Real-time transaction screening via Jube probabilistic ML engine. PSR APP 2024 / MLR 2017.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-domain">
+          <value xml:lang="en">fraud</value>
+        </property>
+      </properties>
+    </element>
+
+    <element identifier="id-sanctions-screening-process" xsi:type="BusinessProcess">
+      <name xml:lang="en">Sanctions Screening</name>
+      <documentation xml:lang="en">OFAC/UN/EU/UK sanctions and PEP check. Triggered at onboarding and on each payment. MLR 2017 Reg.28.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-domain">
+          <value xml:lang="en">compliance</value>
+        </property>
+      </properties>
+    </element>
+
+    <element identifier="id-payment-processing-process" xsi:type="BusinessProcess">
+      <name xml:lang="en">Payment Processing</name>
+      <documentation xml:lang="en">FPS/SEPA payment lifecycle: initiate → screen → authorise → settle → notify. PSR 2017.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-domain">
+          <value xml:lang="en">payment</value>
+        </property>
+      </properties>
+    </element>
+
+    <element identifier="id-consumer-duty-process" xsi:type="BusinessProcess">
+      <name xml:lang="en">Consumer Duty DISP</name>
+      <documentation xml:lang="en">FCA DISP complaints handling under Consumer Duty (PS22/9). 3-day acknowledgement + 8-week resolution SLA.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-domain">
+          <value xml:lang="en">compliance</value>
+        </property>
+      </properties>
+    </element>
+
+    <element identifier="id-fin060-process" xsi:type="BusinessProcess">
+      <name xml:lang="en">FIN060 Return</name>
+      <documentation xml:lang="en">FCA regulatory return FIN060 — safeguarding funds report. Annual submission via RegData.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-domain">
+          <value xml:lang="en">safeguarding</value>
+        </property>
+      </properties>
+    </element>
+
+    <!-- Technology Layer — Existing -->
+    <element identifier="id-midaz" xsi:type="TechnologyService">
+      <name xml:lang="en">Midaz CBS</name>
+      <documentation xml:lang="en">Core Banking System. Self-hosted on GMKtec :8095. Double-entry GL ledger. Apache 2.0. Sprint 8.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-host">
+          <value xml:lang="en">localhost:8095</value>
+        </property>
+        <property propertyDefinitionRef="prop-license">
+          <value xml:lang="en">Apache 2.0</value>
+        </property>
+      </properties>
+    </element>
+
+    <element identifier="id-keycloak" xsi:type="TechnologyService">
+      <name xml:lang="en">Keycloak IAM</name>
+      <documentation xml:lang="en">Keycloak 26.2.5 OIDC. Realm: banxe. GMKtec :8180. 7 roles.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-host">
+          <value xml:lang="en">localhost:8180</value>
+        </property>
+      </properties>
+    </element>
+
+    <element identifier="id-clickhouse" xsi:type="TechnologyService">
+      <name xml:lang="en">ClickHouse Audit DB</name>
+      <documentation xml:lang="en">Append-only audit trail. TTL 5 years (FCA MLR 2017 I-08). Tables: safeguarding_events, recon_events. :8123/9000.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-host">
+          <value xml:lang="en">localhost:8123</value>
+        </property>
+        <property propertyDefinitionRef="prop-license">
+          <value xml:lang="en">Apache 2.0</value>
+        </property>
+      </properties>
+    </element>
+
+    <element identifier="id-marble" xsi:type="TechnologyService">
+      <name xml:lang="en">Marble Case Management</name>
+      <documentation xml:lang="en">Self-hosted Apache 2.0 case management. MLRO inbox, case assignment. GMKtec :5002. I-19: internal only.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-host">
+          <value xml:lang="en">localhost:5002</value>
+        </property>
+        <property propertyDefinitionRef="prop-license">
+          <value xml:lang="en">Apache 2.0</value>
+        </property>
+      </properties>
+    </element>
+
+    <!-- Technology Layer — New -->
+    <element identifier="id-ollama" xsi:type="TechnologyService">
+      <name xml:lang="en">Ollama</name>
+      <documentation xml:lang="en">LLM inference server. Primary model: qwen3-banxe-v2 (~30b-a3b). AMD ROCm. GMKtec :11434. MIT licence.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-host">
+          <value xml:lang="en">localhost:11434</value>
+        </property>
+        <property propertyDefinitionRef="prop-status">
+          <value xml:lang="en">ACTIVE</value>
+        </property>
+        <property propertyDefinitionRef="prop-license">
+          <value xml:lang="en">MIT</value>
+        </property>
+      </properties>
+    </element>
+
+    <element identifier="id-jube-tm" xsi:type="TechnologyService">
+      <name xml:lang="en">Jube TM</name>
+      <documentation xml:lang="en">Probabilistic transaction monitoring engine. Self-hosted. AGPLv3. GMKtec :5001.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-host">
+          <value xml:lang="en">localhost:5001</value>
+        </property>
+        <property propertyDefinitionRef="prop-status">
+          <value xml:lang="en">ACTIVE</value>
+        </property>
+        <property propertyDefinitionRef="prop-license">
+          <value xml:lang="en">AGPLv3</value>
+        </property>
+      </properties>
+    </element>
+
+    <element identifier="id-postgres-compliance" xsi:type="TechnologyService">
+      <name xml:lang="en">PostgreSQL (compliance)</name>
+      <documentation xml:lang="en">Compliance database. PEP records (14,491), KYB entities. PostgreSQL licence. GMKtec :5432.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-host">
+          <value xml:lang="en">localhost:5432</value>
+        </property>
+        <property propertyDefinitionRef="prop-status">
+          <value xml:lang="en">ACTIVE</value>
+        </property>
+      </properties>
+    </element>
+
+    <element identifier="id-postgres-jube" xsi:type="TechnologyService">
+      <name xml:lang="en">PostgreSQL (Jube)</name>
+      <documentation xml:lang="en">Jube TM internal database. PostgreSQL licence. GMKtec :15432.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-host">
+          <value xml:lang="en">localhost:15432</value>
+        </property>
+        <property propertyDefinitionRef="prop-status">
+          <value xml:lang="en">ACTIVE</value>
+        </property>
+      </properties>
+    </element>
+
+    <element identifier="id-postgres-marble" xsi:type="TechnologyService">
+      <name xml:lang="en">PostgreSQL (Marble)</name>
+      <documentation xml:lang="en">Marble case management database. PostgreSQL licence. GMKtec :15433.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-host">
+          <value xml:lang="en">localhost:15433</value>
+        </property>
+        <property propertyDefinitionRef="prop-status">
+          <value xml:lang="en">ACTIVE</value>
+        </property>
+      </properties>
+    </element>
+
+    <element identifier="id-redis" xsi:type="TechnologyService">
+      <name xml:lang="en">Redis</name>
+      <documentation xml:lang="en">Velocity monitoring cache. 24h TTL. BSD licence. GMKtec :6379.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-host">
+          <value xml:lang="en">localhost:6379</value>
+        </property>
+        <property propertyDefinitionRef="prop-status">
+          <value xml:lang="en">ACTIVE</value>
+        </property>
+        <property propertyDefinitionRef="prop-license">
+          <value xml:lang="en">BSD</value>
+        </property>
+      </properties>
+    </element>
+
+    <element identifier="id-redis-jube" xsi:type="TechnologyService">
+      <name xml:lang="en">Redis (Jube)</name>
+      <documentation xml:lang="en">Jube TM internal cache. BSD licence. GMKtec :16379.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-host">
+          <value xml:lang="en">localhost:16379</value>
+        </property>
+        <property propertyDefinitionRef="prop-status">
+          <value xml:lang="en">ACTIVE</value>
+        </property>
+        <property propertyDefinitionRef="prop-license">
+          <value xml:lang="en">BSD</value>
+        </property>
+      </properties>
+    </element>
+
+    <element identifier="id-n8n" xsi:type="TechnologyService">
+      <name xml:lang="en">n8n</name>
+      <documentation xml:lang="en">Workflow automation (developer tooling). Fair-code licence. GMKtec :5678.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-host">
+          <value xml:lang="en">localhost:5678</value>
+        </property>
+        <property propertyDefinitionRef="prop-status">
+          <value xml:lang="en">ACTIVE</value>
+        </property>
+        <property propertyDefinitionRef="prop-license">
+          <value xml:lang="en">Fair-code</value>
+        </property>
+      </properties>
+    </element>
+
+    <element identifier="id-nginx" xsi:type="TechnologyService">
+      <name xml:lang="en">nginx</name>
+      <documentation xml:lang="en">Reverse proxy and Web UI gateway. MIT licence. GMKtec :443/:80.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-host">
+          <value xml:lang="en">localhost:443/80</value>
+        </property>
+        <property propertyDefinitionRef="prop-status">
+          <value xml:lang="en">ACTIVE</value>
+        </property>
+        <property propertyDefinitionRef="prop-license">
+          <value xml:lang="en">MIT</value>
+        </property>
+      </properties>
+    </element>
+
+    <element identifier="id-firebase-emulator" xsi:type="TechnologyService">
+      <name xml:lang="en">Firebase Emulator</name>
+      <documentation xml:lang="en">Firebase auth emulator for Marble local mode. Apache 2.0. GMKtec :9099/:4000.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-host">
+          <value xml:lang="en">localhost:9099</value>
+        </property>
+        <property propertyDefinitionRef="prop-status">
+          <value xml:lang="en">ACTIVE</value>
+        </property>
+        <property propertyDefinitionRef="prop-license">
+          <value xml:lang="en">Apache 2.0</value>
+        </property>
+      </properties>
+    </element>
+
+    <element identifier="id-mongodb-midaz" xsi:type="TechnologyService">
+      <name xml:lang="en">MongoDB (Midaz)</name>
+      <documentation xml:lang="en">Midaz metadata store. rs0 replica set. SSPL licence. GMKtec :5703. Sprint 8.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-host">
+          <value xml:lang="en">localhost:5703</value>
+        </property>
+        <property propertyDefinitionRef="prop-status">
+          <value xml:lang="en">ACTIVE</value>
+        </property>
+        <property propertyDefinitionRef="prop-license">
+          <value xml:lang="en">SSPL</value>
+        </property>
+      </properties>
+    </element>
+
+    <element identifier="id-rabbitmq-midaz" xsi:type="TechnologyService">
+      <name xml:lang="en">RabbitMQ (Midaz)</name>
+      <documentation xml:lang="en">Midaz async transaction queue. MPL 2.0. GMKtec :3003 (HTTP mgmt) / :3004 (AMQP). Sprint 8.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-host">
+          <value xml:lang="en">localhost:3003/3004</value>
+        </property>
+        <property propertyDefinitionRef="prop-status">
+          <value xml:lang="en">ACTIVE</value>
+        </property>
+        <property propertyDefinitionRef="prop-license">
+          <value xml:lang="en">MPL 2.0</value>
+        </property>
+      </properties>
+    </element>
+
+    <!-- Data Objects -->
+    <element identifier="id-transaction-record" xsi:type="DataObject">
+      <name xml:lang="en">TransactionRecord</name>
+      <documentation xml:lang="en">Immutable transaction record. amount_gbp: Decimal (I-05). status: APPROVED|PENDING|CANCELLED.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-module">
+          <value xml:lang="en">services/ledger/midaz_adapter.py</value>
+        </property>
+      </properties>
+    </element>
+
+    <element identifier="id-customer-profile" xsi:type="DataObject">
+      <name xml:lang="en">CustomerProfile</name>
+      <documentation xml:lang="en">Customer entity with KYC status, risk tier, agreement refs. PII fields encrypted at rest.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-module">
+          <value xml:lang="en">api/models/customers.py</value>
+        </property>
+      </properties>
+    </element>
+  </elements>
+
+  <relationships>
+    <!-- Existing relationships — API Gateway serving core services -->
+    <relationship identifier="id-rel-api-safeguarding" xsi:type="Serving"
+      source="id-api-gateway" target="id-safeguarding-service">
+      <name xml:lang="en">serves</name>
+    </relationship>
+
+    <relationship identifier="id-rel-api-recon" xsi:type="Serving"
+      source="id-api-gateway" target="id-recon-engine">
+      <name xml:lang="en">serves</name>
+    </relationship>
+
+    <relationship identifier="id-rel-api-payment" xsi:type="Serving"
+      source="id-api-gateway" target="id-payment-service">
+      <name xml:lang="en">serves</name>
+    </relationship>
+
+    <relationship identifier="id-rel-api-kyc" xsi:type="Serving"
+      source="id-api-gateway" target="id-kyc-service">
+      <name xml:lang="en">serves</name>
+    </relationship>
+
+    <relationship identifier="id-rel-api-aml" xsi:type="Serving"
+      source="id-api-gateway" target="id-aml-service">
+      <name xml:lang="en">serves</name>
+    </relationship>
+
+    <relationship identifier="id-rel-ledger-midaz" xsi:type="Serving"
+      source="id-ledger-service" target="id-midaz">
+      <name xml:lang="en">calls</name>
+    </relationship>
+
+    <relationship identifier="id-rel-iam-keycloak" xsi:type="Serving"
+      source="id-iam-service" target="id-keycloak">
+      <name xml:lang="en">authenticates via</name>
+    </relationship>
+
+    <relationship identifier="id-rel-safeguarding-clickhouse" xsi:type="Flow"
+      source="id-safeguarding-service" target="id-clickhouse">
+      <name xml:lang="en">audit trail</name>
+    </relationship>
+
+    <relationship identifier="id-rel-recon-midaz" xsi:type="Serving"
+      source="id-recon-engine" target="id-midaz">
+      <name xml:lang="en">reads GL balance</name>
+    </relationship>
+
+    <relationship identifier="id-rel-aml-marble" xsi:type="Flow"
+      source="id-aml-service" target="id-marble">
+      <name xml:lang="en">creates case</name>
+    </relationship>
+
+    <relationship identifier="id-rel-onboarding-kyc" xsi:type="Composition"
+      source="id-onboarding-process" target="id-kyc-service">
+      <name xml:lang="en">triggers</name>
+    </relationship>
+
+    <relationship identifier="id-rel-recon-process-engine" xsi:type="Composition"
+      source="id-daily-recon-process" target="id-recon-engine">
+      <name xml:lang="en">executes via</name>
+    </relationship>
+
+    <!-- New relationships — required per task spec -->
+    <relationship identifier="id-rel-aml-jube" xsi:type="Serving"
+      source="id-aml-service" target="id-jube-tm">
+      <name xml:lang="en">ML scoring</name>
+    </relationship>
+
+    <relationship identifier="id-rel-aml-yente" xsi:type="Serving"
+      source="id-aml-service" target="id-yente">
+      <name xml:lang="en">sanctions screening</name>
+    </relationship>
+
+    <relationship identifier="id-rel-safeguarding-midaz" xsi:type="Serving"
+      source="id-safeguarding-service" target="id-midaz">
+      <name xml:lang="en">reads GL</name>
+    </relationship>
+
+    <relationship identifier="id-rel-payment-hyperswitch" xsi:type="Serving"
+      source="id-payment-service" target="id-hyperswitch-app">
+      <name xml:lang="en">payment orchestration</name>
+    </relationship>
+
+    <relationship identifier="id-rel-kyc-postgres-compliance" xsi:type="Access"
+      source="id-kyc-service" target="id-postgres-compliance">
+      <name xml:lang="en">reads PEP data</name>
+    </relationship>
+
+    <relationship identifier="id-rel-api-iam" xsi:type="Serving"
+      source="id-api-gateway" target="id-iam-service">
+      <name xml:lang="en">authenticates</name>
+    </relationship>
+
+    <relationship identifier="id-rel-api-ledger" xsi:type="Serving"
+      source="id-api-gateway" target="id-ledger-service">
+      <name xml:lang="en">serves</name>
+    </relationship>
+
+    <relationship identifier="id-rel-ledger-mongodb" xsi:type="Access"
+      source="id-ledger-service" target="id-mongodb-midaz">
+      <name xml:lang="en">metadata</name>
+    </relationship>
+
+    <relationship identifier="id-rel-ledger-rabbitmq" xsi:type="Flow"
+      source="id-ledger-service" target="id-rabbitmq-midaz">
+      <name xml:lang="en">async transactions</name>
+    </relationship>
+
+    <relationship identifier="id-rel-nginx-api" xsi:type="Serving"
+      source="id-nginx" target="id-api-gateway">
+      <name xml:lang="en">reverse proxy</name>
+    </relationship>
+
+    <relationship identifier="id-rel-pii-postgres-compliance" xsi:type="Access"
+      source="id-pii-proxy" target="id-postgres-compliance">
+      <name xml:lang="en">anonymisation</name>
+    </relationship>
+
+    <!-- Additional inferred relationships -->
+    <relationship identifier="id-rel-jube-postgres-jube" xsi:type="Access"
+      source="id-jube-tm" target="id-postgres-jube">
+      <name xml:lang="en">stores model data</name>
+    </relationship>
+
+    <relationship identifier="id-rel-jube-redis-jube" xsi:type="Access"
+      source="id-jube-tm" target="id-redis-jube">
+      <name xml:lang="en">internal cache</name>
+    </relationship>
+
+    <relationship identifier="id-rel-marble-postgres-marble" xsi:type="Access"
+      source="id-marble" target="id-postgres-marble">
+      <name xml:lang="en">stores cases</name>
+    </relationship>
+
+    <relationship identifier="id-rel-marble-firebase" xsi:type="Serving"
+      source="id-marble" target="id-firebase-emulator">
+      <name xml:lang="en">auth (local mode)</name>
+    </relationship>
+
+    <relationship identifier="id-rel-aml-redis" xsi:type="Access"
+      source="id-aml-service" target="id-redis">
+      <name xml:lang="en">velocity monitoring</name>
+    </relationship>
+
+    <relationship identifier="id-rel-tx-monitoring-aml" xsi:type="Composition"
+      source="id-tx-monitoring-process" target="id-aml-service">
+      <name xml:lang="en">executes via</name>
+    </relationship>
+
+    <relationship identifier="id-rel-sanctions-screener" xsi:type="Composition"
+      source="id-sanctions-screening-process" target="id-banxe-screener">
+      <name xml:lang="en">executes via</name>
+    </relationship>
+
+    <relationship identifier="id-rel-payment-proc-payment-svc" xsi:type="Composition"
+      source="id-payment-processing-process" target="id-payment-service">
+      <name xml:lang="en">executes via</name>
+    </relationship>
+
+    <relationship identifier="id-rel-fin060-safeguarding" xsi:type="Composition"
+      source="id-fin060-process" target="id-safeguarding-service">
+      <name xml:lang="en">executes via</name>
+    </relationship>
+
+    <relationship identifier="id-rel-openclaw-moa-ollama" xsi:type="Serving"
+      source="id-openclaw-moa-bot" target="id-ollama">
+      <name xml:lang="en">LLM inference</name>
+    </relationship>
+
+    <relationship identifier="id-rel-openclaw-ctio-ollama" xsi:type="Serving"
+      source="id-openclaw-ctio-bot" target="id-ollama">
+      <name xml:lang="en">LLM inference</name>
+    </relationship>
+
+    <relationship identifier="id-rel-midaz-mongodb" xsi:type="Access"
+      source="id-midaz" target="id-mongodb-midaz">
+      <name xml:lang="en">metadata store</name>
+    </relationship>
+
+    <relationship identifier="id-rel-midaz-rabbitmq" xsi:type="Flow"
+      source="id-midaz" target="id-rabbitmq-midaz">
+      <name xml:lang="en">async queue</name>
+    </relationship>
+
+    <relationship identifier="id-rel-hyperswitch-vault" xsi:type="Serving"
+      source="id-hyperswitch-app" target="id-hyperswitch-vault">
+      <name xml:lang="en">card tokenisation</name>
+    </relationship>
+  </relationships>
+
+  <views>
+    <diagrams>
+      <view identifier="id-view-application-layer" xsi:type="ModelViewpoint">
+        <name xml:lang="en">Application Layer — Banxe EMI Stack</name>
+        <node elementRef="id-api-gateway" identifier="node-api" type="Element" x="100" y="50" w="200" h="60"/>
+        <node elementRef="id-safeguarding-service" identifier="node-safeguarding" type="Element" x="50" y="180" w="200" h="60"/>
+        <node elementRef="id-recon-engine" identifier="node-recon" type="Element" x="300" y="180" w="200" h="60"/>
+        <node elementRef="id-payment-service" identifier="node-payment" type="Element" x="550" y="180" w="200" h="60"/>
+        <node elementRef="id-aml-service" identifier="node-aml" type="Element" x="50" y="300" w="200" h="60"/>
+        <node elementRef="id-iam-service" identifier="node-iam" type="Element" x="800" y="180" w="200" h="60"/>
+        <connection relationshipRef="id-rel-api-safeguarding" identifier="conn-1" source="node-api" target="node-safeguarding"/>
+        <connection relationshipRef="id-rel-api-recon" identifier="conn-2" source="node-api" target="node-recon"/>
+        <connection relationshipRef="id-rel-api-payment" identifier="conn-3" source="node-api" target="node-payment"/>
+        <connection relationshipRef="id-rel-api-aml" identifier="conn-4" source="node-api" target="node-aml"/>
+      </view>
+
+      <view identifier="id-view-safeguarding" xsi:type="ModelViewpoint">
+        <name xml:lang="en">CASS 15 Safeguarding Architecture</name>
+        <node elementRef="id-safeguarding-service" identifier="node-s1" type="Element" x="100" y="50" w="200" h="60"/>
+        <node elementRef="id-recon-engine" identifier="node-s2" type="Element" x="350" y="50" w="200" h="60"/>
+        <node elementRef="id-clickhouse" identifier="node-s3" type="Element" x="100" y="200" w="200" h="60"/>
+        <node elementRef="id-midaz" identifier="node-s4" type="Element" x="350" y="200" w="200" h="60"/>
+        <connection relationshipRef="id-rel-safeguarding-clickhouse" identifier="conn-s1" source="node-s1" target="node-s3"/>
+        <connection relationshipRef="id-rel-recon-midaz" identifier="conn-s2" source="node-s2" target="node-s4"/>
+      </view>
+
+      <view identifier="id-view-compliance-stack" xsi:type="ModelViewpoint">
+        <name xml:lang="en">Compliance &amp; AML Stack</name>
+        <node elementRef="id-aml-service" identifier="node-c-aml" type="Element" x="100" y="50" w="200" h="60"/>
+        <node elementRef="id-jube-tm" identifier="node-c-jube" type="Element" x="350" y="50" w="200" h="60"/>
+        <node elementRef="id-banxe-screener" identifier="node-c-screener" type="Element" x="100" y="180" w="200" h="60"/>
+        <node elementRef="id-yente" identifier="node-c-yente" type="Element" x="350" y="180" w="200" h="60"/>
+        <node elementRef="id-marble" identifier="node-c-marble" type="Element" x="600" y="50" w="200" h="60"/>
+        <node elementRef="id-postgres-compliance" identifier="node-c-pg" type="Element" x="600" y="180" w="200" h="60"/>
+        <connection relationshipRef="id-rel-aml-jube" identifier="conn-c1" source="node-c-aml" target="node-c-jube"/>
+        <connection relationshipRef="id-rel-aml-yente" identifier="conn-c2" source="node-c-aml" target="node-c-yente"/>
+        <connection relationshipRef="id-rel-aml-marble" identifier="conn-c3" source="node-c-aml" target="node-c-marble"/>
+      </view>
+
+      <view identifier="id-view-payment-stack" xsi:type="ModelViewpoint">
+        <name xml:lang="en">Payment Stack — Hyperswitch</name>
+        <node elementRef="id-payment-service" identifier="node-p-svc" type="Element" x="100" y="50" w="200" h="60"/>
+        <node elementRef="id-hyperswitch-app" identifier="node-p-app" type="Element" x="350" y="50" w="200" h="60"/>
+        <node elementRef="id-hyperswitch-control" identifier="node-p-ctrl" type="Element" x="350" y="180" w="220" h="60"/>
+        <node elementRef="id-hyperswitch-vault" identifier="node-p-vault" type="Element" x="620" y="50" w="200" h="60"/>
+        <connection relationshipRef="id-rel-payment-hyperswitch" identifier="conn-p1" source="node-p-svc" target="node-p-app"/>
+        <connection relationshipRef="id-rel-hyperswitch-vault" identifier="conn-p2" source="node-p-app" target="node-p-vault"/>
+      </view>
+
+      <view identifier="id-view-ledger-stack" xsi:type="ModelViewpoint">
+        <name xml:lang="en">Ledger Stack — Midaz CBS</name>
+        <node elementRef="id-ledger-service" identifier="node-l-svc" type="Element" x="100" y="50" w="200" h="60"/>
+        <node elementRef="id-midaz" identifier="node-l-midaz" type="Element" x="350" y="50" w="200" h="60"/>
+        <node elementRef="id-mongodb-midaz" identifier="node-l-mongo" type="Element" x="350" y="180" w="200" h="60"/>
+        <node elementRef="id-rabbitmq-midaz" identifier="node-l-rmq" type="Element" x="600" y="50" w="200" h="60"/>
+        <connection relationshipRef="id-rel-ledger-midaz" identifier="conn-l1" source="node-l-svc" target="node-l-midaz"/>
+        <connection relationshipRef="id-rel-ledger-mongodb" identifier="conn-l2" source="node-l-svc" target="node-l-mongo"/>
+        <connection relationshipRef="id-rel-ledger-rabbitmq" identifier="conn-l3" source="node-l-svc" target="node-l-rmq"/>
+      </view>
+    </diagrams>
+  </views>
+
+</model>

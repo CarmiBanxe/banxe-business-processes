@@ -1,0 +1,7 @@
+# SAR Filing
+archimate_id: id-sar-process
+type: BusinessProcess
+domain: compliance
+name: SAR Filing
+documentation: |
+  POCA 2002 s.330 — Suspicious Activity Report lifecycle: file → MLRO approve → submit NCA.
