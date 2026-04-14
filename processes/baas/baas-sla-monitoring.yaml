@@ -1,7 +1,7 @@
 # BaaS SLA Monitoring
 archimate_id: id-baas-sla
 type: BusinessProcess
-domain: strategy
+domain: baas
 name: BaaS SLA Monitoring
 documentation: |
   Tenant SLA tracking. Uptime, latency, error rate dashboards.

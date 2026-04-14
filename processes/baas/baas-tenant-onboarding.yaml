@@ -1,7 +1,7 @@
 # BaaS Tenant Onboarding
 archimate_id: id-baas-onboarding
 type: BusinessProcess
-domain: strategy
+domain: baas
 name: BaaS Tenant Onboarding
 documentation: |
   White-label tenant setup. API keys, webhook config, sandbox provisioning.

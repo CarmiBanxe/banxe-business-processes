@@ -17,7 +17,20 @@ DOMAIN_MAP = {
     'Consumer Duty DISP': 'compliance',
     'Payment Processing': 'payments',
     'Daily Reconciliation': 'treasury',
-    'FIN060 Return': 'treasury',
+        'FIN060 Return': 'treasury',
+    'Card Issuance': 'card-lifecycle',
+    'Card Activation': 'card-lifecycle',
+    'Card Blocking': 'card-lifecycle',
+    'Card Replacement': 'card-lifecycle',
+    'Risk Assessment': 'risk',
+    'Operational Risk Monitoring': 'risk',
+    'Fraud Detection': 'risk',
+    'OKR Planning': 'strategy',
+    'Regulatory Horizon Scanning': 'strategy',
+    'Product Roadmap Review': 'strategy',
+    'BaaS Tenant Onboarding': 'baas',
+    'BaaS SLA Monitoring': 'baas',
+    'BaaS Settlement': 'baas',
 }
 
 ACTOR_ROLES = {

@@ -1,7 +1,7 @@
 # Card Activation
 archimate_id: id-card-activation
 type: BusinessProcess
-domain: strategy
+domain: card-lifecycle
 name: Card Activation
 documentation: |
   Customer activates card via app or IVR. 3DS enrolment trigger.

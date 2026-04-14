@@ -1,7 +1,7 @@
 # Risk Assessment
 archimate_id: id-risk-assessment
 type: BusinessProcess
-domain: strategy
+domain: risk
 name: Risk Assessment
 documentation: |
   Customer risk scoring at onboarding. CDD/EDD tiering per MLR 2017 Reg.28.

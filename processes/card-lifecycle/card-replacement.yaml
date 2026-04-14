@@ -1,7 +1,7 @@
 # Card Replacement
 archimate_id: id-card-replacement
 type: BusinessProcess
-domain: strategy
+domain: card-lifecycle
 name: Card Replacement
 documentation: |
   Lost/stolen replacement flow. New PAN, migrate recurring mandates.

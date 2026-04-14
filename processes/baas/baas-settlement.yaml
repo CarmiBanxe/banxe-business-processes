@@ -1,7 +1,7 @@
 # BaaS Settlement
 archimate_id: id-baas-settlement
 type: BusinessProcess
-domain: strategy
+domain: baas
 name: BaaS Settlement
 documentation: |
   Daily tenant settlement. Fee calculation, revenue share, reconciliation.

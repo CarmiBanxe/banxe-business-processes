@@ -1,7 +1,7 @@
 # Operational Risk Monitoring
 archimate_id: id-ops-risk-monitoring
 type: BusinessProcess
-domain: strategy
+domain: risk
 name: Operational Risk Monitoring
 documentation: |
   Daily monitoring of key risk indicators. Basel III pillar 2 aligned.
