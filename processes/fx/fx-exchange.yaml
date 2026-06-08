@@ -1,0 +1,29 @@
+# FX Exchange
+# STUB — manually authored to make the FX/Exchange client capability resolvable
+# (ADR-049 FX/Exchange mask). Not yet modelled in ArchiMate.
+# TODO: model in Archi Tool, then run `make import`; enrich once the
+#       banxe-payment-core ExchangePort contract is pinned.
+archimate_id: id-fx-exchange
+type: BusinessProcess
+domain: fx
+name: FX Exchange
+stub: true
+documentation: |
+  Client-facing currency exchange / FX conversion: quote -> confirm -> convert -> settle.
+  Resolution target for the FX/Exchange capability (ExchangePort, WalletPort) per ADR-049.
+process_id: fx-exchange
+version: "1.0.0"
+triggers:
+  - "Customer requests an FX quote or currency conversion"
+steps:
+  - "Provide an FX quote (TODO: enrich against ExchangePort contract)"
+  - "Customer confirms the quote"
+  - "Debit the source currency"
+  - "Credit the target currency"
+  - "Settle the conversion"
+actors:
+  - payment-operations
+  - treasury-manager
+  - compliance-officer
+compliance_refs:
+  - "MLR-2017"

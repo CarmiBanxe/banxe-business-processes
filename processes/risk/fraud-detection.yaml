@@ -9,3 +9,19 @@ relationships:
   - name: Jube TM
     type: TechnologyService
     relation: Composition
+
+process_id: fraud-detection
+version: "1.0.0"
+triggers:
+  - "Each transaction / authorisation event (real-time)"
+steps:
+  - "Ingest the event"
+  - "Score fraud risk via the Jube ML engine"
+  - "Evaluate against the threshold"
+  - "Block or hold suspicious activity"
+  - "Route to investigation"
+actors:
+  - risk-manager
+  - mlro
+compliance_refs:
+  - "PSR-APP-2024"

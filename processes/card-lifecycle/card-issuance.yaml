@@ -9,3 +9,17 @@ relationships:
   - name: Hyperswitch Card Vault
     type: ApplicationComponent
     relation: Composition
+
+process_id: card-issuance
+version: "1.0.0"
+triggers:
+  - "An approved customer requests a card"
+steps:
+  - "Validate customer eligibility"
+  - "Create the card in the Hyperswitch Card Vault"
+  - "Provision the PAN (PCI DSS scope)"
+  - "Deliver the virtual or physical card"
+actors:
+  - card-operations
+compliance_refs:
+  - "PCI-DSS"

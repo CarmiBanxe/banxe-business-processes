@@ -5,3 +5,20 @@ domain: strategy
 name: Regulatory Horizon Scanning
 documentation: |
   FCA/PRA/EBA regulatory change monitoring. Impact assessment workflow.
+
+process_id: horizon-scanning
+version: "1.0.0"
+triggers:
+  - "New FCA/PRA/EBA publication"
+  - "Scheduled horizon review"
+steps:
+  - "Monitor regulatory feeds"
+  - "Identify relevant changes"
+  - "Assess impact"
+  - "Assign an owner"
+  - "Track through to implementation"
+actors:
+  - compliance-officer
+  - mlro
+  - ceo
+compliance_refs: []

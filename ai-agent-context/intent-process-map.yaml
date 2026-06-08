@@ -1,0 +1,78 @@
+# L1 intent -> process_ref resolution table
+#
+# This is the ADR-048 D3 / ADR-049 D2 process_ref gate: the L1 layer classifies a
+# client intent and resolves it to one or more canonical process_id(s) BEFORE any
+# consequential L2 action. The version for each process_ref is taken from
+# ai-agent-context/processes-registry.json (process_ref = {process_id, version}).
+#
+# An intent that resolves to NO canonical process is a governance event
+# (HITL / process-gap backlog) — never improvised (ADR-048 D3.3, ADR-049 D2).
+#
+# `capability` ties each intent to the ADR-049 D3 client-facing agent mask.
+# Validated by scripts/validate_resolvable.py: every process_id below must exist
+# in the registry.
+version: "1.0.0"
+schema_note: "process_id values resolve against processes-registry.json; the resolved version is read from that registry entry."
+
+intents:
+  # --- The 9 client-facing capabilities (ADR-049 D3) ---
+  - intent: pay
+    aliases: ["transfer", "send money", "make a payment", "move funds"]
+    capability: Payments
+    process_ids: ["payment-processing-process"]
+
+  - intent: exchange
+    aliases: ["fx", "convert currency", "currency exchange", "swap currency"]
+    capability: FX / Exchange
+    process_ids: ["fx-exchange"]
+
+  - intent: view-balance
+    aliases: ["check balance", "view balance", "what's my balance", "manage wallet"]
+    capability: Wallet
+    process_ids: ["wallet-balance-inquiry"]
+
+  - intent: freeze-card
+    aliases: ["block card", "freeze my card", "lock card", "report card lost/stolen"]
+    capability: Card (Wallet/Payments-adjacent)
+    process_ids: ["card-blocking"]
+
+  - intent: onboard-kyc
+    aliases: ["sign up", "open an account", "register", "complete KYC", "verify identity"]
+    capability: KYC onboarding
+    process_ids: ["onboarding-process"]
+
+  - intent: get-statement
+    aliases: ["statement", "download statement", "account statement", "get my statement"]
+    capability: Statements (ADR-055)
+    process_ids: ["statement-generation"]
+
+  - intent: see-spending
+    aliases: ["spending", "spending breakdown", "where did my money go", "insights"]
+    capability: Analytics / Reporting (ADR-054)
+    process_ids: ["spending-analytics"]
+
+  - intent: refer-a-friend
+    aliases: ["referral", "invite a friend", "refer", "share invite"]
+    capability: Referral / CRM
+    process_ids: ["referral-management"]
+
+  - intent: get-notified
+    aliases: ["notifications", "alerts", "notify me", "manage notifications"]
+    capability: Notifications
+    process_ids: ["notification-dispatch"]
+
+  # --- Obvious adjacent client intents resolving to existing card processes ---
+  - intent: activate-card
+    aliases: ["activate my card", "turn on card", "enable card"]
+    capability: Card
+    process_ids: ["card-activation"]
+
+  - intent: order-card
+    aliases: ["get a card", "new card", "request card", "issue card"]
+    capability: Card
+    process_ids: ["card-issuance"]
+
+  - intent: replace-card
+    aliases: ["replace card", "lost card replacement", "new card same account"]
+    capability: Card
+    process_ids: ["card-replacement"]

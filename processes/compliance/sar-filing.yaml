@@ -5,3 +5,19 @@ domain: compliance
 name: SAR Filing
 documentation: |
   POCA 2002 s.330 — Suspicious Activity Report lifecycle: file → MLRO approve → submit NCA.
+
+process_id: sar-process
+version: "1.0.0"
+triggers:
+  - "Suspicious activity detected or flagged"
+steps:
+  - "Draft the Suspicious Activity Report"
+  - "MLRO review"
+  - "MLRO approval"
+  - "Submit to the NCA"
+  - "Retain records"
+actors:
+  - mlro
+  - compliance-officer
+compliance_refs:
+  - "POCA-2002-s.330"

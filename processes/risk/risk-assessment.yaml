@@ -9,3 +9,19 @@ relationships:
   - name: KYC Service
     type: ApplicationComponent
     relation: Flow
+
+process_id: risk-assessment
+version: "1.0.0"
+triggers:
+  - "Customer onboarding"
+  - "Periodic risk review"
+steps:
+  - "Gather customer risk factors"
+  - "Compute the risk score"
+  - "Assign the CDD/EDD tier"
+  - "Set the ongoing monitoring level"
+actors:
+  - risk-manager
+  - kyc-analyst
+compliance_refs:
+  - "MLR-2017-Reg.28"

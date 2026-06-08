@@ -9,3 +9,21 @@ relationships:
   - name: AML / Fraud Service
     type: ApplicationComponent
     relation: Composition
+
+process_id: tx-monitoring-process
+version: "1.0.0"
+triggers:
+  - "Each transaction event (real-time)"
+steps:
+  - "Ingest the transaction"
+  - "Score it via the Jube probabilistic ML engine"
+  - "Evaluate against monitoring rules"
+  - "Raise an alert when a threshold is crossed"
+  - "Route the alert to case management"
+actors:
+  - mlro
+  - compliance-officer
+  - risk-manager
+compliance_refs:
+  - "PSR-APP-2024"
+  - "MLR-2017"

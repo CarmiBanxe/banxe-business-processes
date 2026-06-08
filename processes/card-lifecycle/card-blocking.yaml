@@ -9,3 +9,21 @@ relationships:
   - name: Hyperswitch App Server
     type: ApplicationComponent
     relation: Composition
+
+process_id: card-blocking
+version: "1.0.0"
+triggers:
+  - "Customer reports the card lost/stolen or requests a freeze"
+  - "Fraud-detection signal"
+steps:
+  - "Receive the block/freeze request"
+  - "Authenticate the request source"
+  - "Block the card in real time via the Hyperswitch API"
+  - "Confirm the block to the customer"
+  - "Log the event for fraud review"
+actors:
+  - card-operations
+  - customer-support
+  - risk-manager
+compliance_refs:
+  - "PCI-DSS"

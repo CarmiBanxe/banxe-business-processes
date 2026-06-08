@@ -1,0 +1,27 @@
+# Notification Dispatch
+# STUB — manually authored to make the Notifications ("get notified") client
+# capability resolvable (ADR-049 Notifications mask). Not yet modelled in ArchiMate.
+# TODO: model in Archi Tool, then run `make import`; enrich once the
+#       NotificationProviderPort contract is pinned.
+archimate_id: id-notification-dispatch
+type: BusinessProcess
+domain: notifications
+name: Notification Dispatch
+stub: true
+documentation: |
+  Client-facing notification: build from template -> apply PII overlay -> dispatch
+  -> log delivery. Resolution target for the Notifications capability
+  (NotificationProviderPort) per ADR-049 (AUTO-biased, low consequence).
+process_id: notification-dispatch
+version: "1.0.0"
+triggers:
+  - "System or event-driven notification trigger"
+steps:
+  - "Build the notification from a template (TODO: enrich against NotificationProviderPort)"
+  - "Apply the PII-handling overlay (ADR-016)"
+  - "Dispatch via the channel"
+  - "Log delivery"
+actors:
+  - customer-support
+compliance_refs:
+  - "ADR-016"

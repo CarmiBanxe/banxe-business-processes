@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://banxe.internal/schemas/process_ref.schema.json",
+  "title": "BANXE process_ref",
+  "description": "Stable handle that uniquely names a canonical business process definition and its version. Encodes the logical intent->process resolution contract fixed by ADR-048 D3 and consumed by ADR-049 D2 (process_ref = {process_id, version}). LOCAL MIRROR: the canonical schema in banxe-architecture is not yet authored (ADR-048 D3 defers the concrete format to sprint work); this file mirrors the {process_id, version} contract so the registry is validatable in-repo. Promote to banxe-architecture/schemas/ when that schema lands.",
+  "type": "object",
+  "required": ["process_id", "version"],
+  "additionalProperties": true,
+  "properties": {
+    "process_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "minLength": 3,
+      "description": "Stable process identifier, derived from the ArchiMate id (leading 'id-' stripped). Kebab-case."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Semantic version of the process definition. A process_ref always names a specific version; older versions remain resolvable (ADR-048 D4)."
+    }
+  }
+}

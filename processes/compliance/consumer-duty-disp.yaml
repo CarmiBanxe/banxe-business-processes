@@ -5,3 +5,22 @@ domain: compliance
 name: Consumer Duty DISP
 documentation: |
   FCA DISP complaints handling under Consumer Duty (PS22/9). 3-day acknowledgement + 8-week resolution SLA.
+
+process_id: consumer-duty-process
+version: "1.0.0"
+triggers:
+  - "Customer complaint received"
+steps:
+  - "Log the complaint"
+  - "Acknowledge within 3 business days"
+  - "Investigate the complaint"
+  - "Resolve within the 8-week SLA"
+  - "Issue the final response"
+  - "Escalate to the FCA / FOS where unresolved"
+actors:
+  - compliance-officer
+  - customer-support
+compliance_refs:
+  - "FCA-DISP"
+  - "PS22/9"
+  - "Consumer-Duty"

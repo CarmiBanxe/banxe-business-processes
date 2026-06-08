@@ -9,3 +9,19 @@ relationships:
   - name: Hyperswitch App Server
     type: ApplicationComponent
     relation: Composition
+
+process_id: card-activation
+version: "1.0.0"
+triggers:
+  - "Customer initiates activation via app or IVR"
+steps:
+  - "Authenticate the customer"
+  - "Verify card ownership"
+  - "Activate the card"
+  - "Enrol the card in 3DS"
+  - "Confirm activation to the customer"
+actors:
+  - card-operations
+  - customer-support
+compliance_refs:
+  - "PCI-DSS"

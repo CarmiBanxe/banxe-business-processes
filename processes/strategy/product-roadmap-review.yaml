@@ -5,3 +5,17 @@ domain: strategy
 name: Product Roadmap Review
 documentation: |
   Monthly product review. Feature prioritisation against compliance deadlines.
+
+process_id: roadmap-review
+version: "1.0.0"
+triggers:
+  - "Monthly product-review cadence"
+steps:
+  - "Collect candidate features"
+  - "Assess each against compliance deadlines"
+  - "Prioritise"
+  - "Update the roadmap"
+actors:
+  - ctio
+  - ceo
+compliance_refs: []

@@ -1,0 +1,27 @@
+name: bpr-validate
+
+# Resolvability proof for the S13-00 Business Process Repository (ADR-048 / ADR-049).
+# Rebuilds the registry deterministically (ArchiMate dir is absent in CI, so the
+# generator builds the registry only — no scaffold) and asserts it matches what is
+# committed, then runs the intent->process_ref resolution validation.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install deps
+        run: pip install -r requirements-dev.txt
+      - name: Registry is deterministic (no uncommitted drift)
+        run: |
+          python3 scripts/generate_from_archimate.py
+          git diff --exit-code -- ai-agent-context/processes-registry.json
+      - name: Validate resolvability
+        run: python3 scripts/validate_resolvable.py

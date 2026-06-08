@@ -1,0 +1,25 @@
+# Wallet Balance Inquiry
+# STUB — manually authored to make the Wallet / view-balance client capability
+# resolvable (ADR-049 Wallet mask, reads AUTO). Not yet modelled in ArchiMate.
+# TODO: model in Archi Tool, then run `make import`; enrich against WalletPort.
+archimate_id: id-wallet-balance-inquiry
+type: BusinessProcess
+domain: wallet
+name: Wallet Balance Inquiry
+stub: true
+documentation: |
+  Client-facing balance read: authenticate -> fetch balance -> return masked balance.
+  Resolution target for the Wallet / "view balance" capability (WalletPort) per ADR-049.
+process_id: wallet-balance-inquiry
+version: "1.0.0"
+triggers:
+  - "Customer requests their current balance"
+steps:
+  - "Authenticate the customer"
+  - "Fetch the wallet balance (TODO: enrich against WalletPort contract)"
+  - "Return the balance to the client (PII overlay per ADR-016)"
+actors:
+  - customer-support
+  - payment-operations
+compliance_refs:
+  - "ADR-016"

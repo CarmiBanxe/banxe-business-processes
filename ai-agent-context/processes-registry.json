@@ -1,0 +1,419 @@
+{
+  "schema": "ai-agent-context/process_ref.schema.json",
+  "description": "S13-00 Business Process Repository registry — L1 intent->process_ref resolution target (ADR-048 D3 / ADR-049 D2). process_ref = {process_id, version}.",
+  "count": 27,
+  "processes": [
+    {
+      "process_id": "baas-onboarding",
+      "version": "1.0.0",
+      "domain": "baas",
+      "name": "BaaS Tenant Onboarding",
+      "summary": "White-label tenant setup",
+      "actors": [
+        "baas-partner-manager",
+        "compliance-officer",
+        "kyc-analyst"
+      ],
+      "triggers": [
+        "Tenant signs the BaaS partner agreement"
+      ],
+      "stub": false
+    },
+    {
+      "process_id": "baas-settlement",
+      "version": "1.0.0",
+      "domain": "baas",
+      "name": "BaaS Settlement",
+      "summary": "Daily tenant settlement",
+      "actors": [
+        "baas-partner-manager",
+        "treasury-manager",
+        "payment-operations"
+      ],
+      "triggers": [
+        "Scheduled — daily settlement window per tenant agreement"
+      ],
+      "stub": false
+    },
+    {
+      "process_id": "baas-sla",
+      "version": "1.0.0",
+      "domain": "baas",
+      "name": "BaaS SLA Monitoring",
+      "summary": "Tenant SLA tracking",
+      "actors": [
+        "baas-partner-manager",
+        "ctio"
+      ],
+      "triggers": [
+        "Continuous — real-time metric ingestion; threshold-breach alerts"
+      ],
+      "stub": false
+    },
+    {
+      "process_id": "card-activation",
+      "version": "1.0.0",
+      "domain": "card-lifecycle",
+      "name": "Card Activation",
+      "summary": "Customer activates card via app or IVR",
+      "actors": [
+        "card-operations",
+        "customer-support"
+      ],
+      "triggers": [
+        "Customer initiates activation via app or IVR"
+      ],
+      "stub": false
+    },
+    {
+      "process_id": "card-blocking",
+      "version": "1.0.0",
+      "domain": "card-lifecycle",
+      "name": "Card Blocking",
+      "summary": "Fraud or customer-initiated block",
+      "actors": [
+        "card-operations",
+        "customer-support",
+        "risk-manager"
+      ],
+      "triggers": [
+        "Customer reports the card lost/stolen or requests a freeze",
+        "Fraud-detection signal"
+      ],
+      "stub": false
+    },
+    {
+      "process_id": "card-issuance",
+      "version": "1.0.0",
+      "domain": "card-lifecycle",
+      "name": "Card Issuance",
+      "summary": "Virtual/physical card creation via Hyperswitch Card Vault",
+      "actors": [
+        "card-operations"
+      ],
+      "triggers": [
+        "An approved customer requests a card"
+      ],
+      "stub": false
+    },
+    {
+      "process_id": "card-replacement",
+      "version": "1.0.0",
+      "domain": "card-lifecycle",
+      "name": "Card Replacement",
+      "summary": "Lost/stolen replacement flow",
+      "actors": [
+        "card-operations",
+        "customer-support"
+      ],
+      "triggers": [
+        "Card reported lost/stolen, damaged, or expiring"
+      ],
+      "stub": false
+    },
+    {
+      "process_id": "consumer-duty-process",
+      "version": "1.0.0",
+      "domain": "compliance",
+      "name": "Consumer Duty DISP",
+      "summary": "FCA DISP complaints handling under Consumer Duty (PS22/9)",
+      "actors": [
+        "compliance-officer",
+        "customer-support"
+      ],
+      "triggers": [
+        "Customer complaint received"
+      ],
+      "stub": false
+    },
+    {
+      "process_id": "daily-recon-process",
+      "version": "1.0.0",
+      "domain": "treasury",
+      "name": "Daily Reconciliation",
+      "summary": "CASS 7.15.17R — daily internal (Midaz) vs external (CAMT.053) reconciliation",
+      "actors": [
+        "treasury-manager",
+        "payment-operations"
+      ],
+      "triggers": [
+        "Scheduled — cron at 23:50 UTC daily"
+      ],
+      "stub": false
+    },
+    {
+      "process_id": "fin060-process",
+      "version": "1.0.0",
+      "domain": "treasury",
+      "name": "FIN060 Return",
+      "summary": "FCA regulatory return FIN060 — safeguarding funds report",
+      "actors": [
+        "treasury-manager",
+        "compliance-officer"
+      ],
+      "triggers": [
+        "Annual FCA reporting deadline"
+      ],
+      "stub": false
+    },
+    {
+      "process_id": "fraud-detection",
+      "version": "1.0.0",
+      "domain": "risk",
+      "name": "Fraud Detection",
+      "summary": "Real-time fraud scoring via Jube ML engine",
+      "actors": [
+        "risk-manager",
+        "mlro"
+      ],
+      "triggers": [
+        "Each transaction / authorisation event (real-time)"
+      ],
+      "stub": false
+    },
+    {
+      "process_id": "fx-exchange",
+      "version": "1.0.0",
+      "domain": "fx",
+      "name": "FX Exchange",
+      "summary": "Client-facing currency exchange / FX conversion: quote -> confirm -> convert -> settle",
+      "actors": [
+        "payment-operations",
+        "treasury-manager",
+        "compliance-officer"
+      ],
+      "triggers": [
+        "Customer requests an FX quote or currency conversion"
+      ],
+      "stub": true
+    },
+    {
+      "process_id": "horizon-scanning",
+      "version": "1.0.0",
+      "domain": "strategy",
+      "name": "Regulatory Horizon Scanning",
+      "summary": "FCA/PRA/EBA regulatory change monitoring",
+      "actors": [
+        "compliance-officer",
+        "mlro",
+        "ceo"
+      ],
+      "triggers": [
+        "New FCA/PRA/EBA publication",
+        "Scheduled horizon review"
+      ],
+      "stub": false
+    },
+    {
+      "process_id": "notification-dispatch",
+      "version": "1.0.0",
+      "domain": "notifications",
+      "name": "Notification Dispatch",
+      "summary": "Client-facing notification: build from template -> apply PII overlay -> dispatch -> log delivery",
+      "actors": [
+        "customer-support"
+      ],
+      "triggers": [
+        "System or event-driven notification trigger"
+      ],
+      "stub": true
+    },
+    {
+      "process_id": "okr-planning",
+      "version": "1.0.0",
+      "domain": "strategy",
+      "name": "OKR Planning",
+      "summary": "Quarterly OKR cycle",
+      "actors": [
+        "ceo",
+        "ctio"
+      ],
+      "triggers": [
+        "Quarterly planning cycle"
+      ],
+      "stub": false
+    },
+    {
+      "process_id": "onboarding-process",
+      "version": "1.0.0",
+      "domain": "onboarding",
+      "name": "Customer Onboarding",
+      "summary": "EMR 2011 Reg.4 — customer creation + KYC + agreement lifecycle",
+      "actors": [
+        "kyc-analyst",
+        "compliance-officer",
+        "customer-support"
+      ],
+      "triggers": [
+        "Prospective customer begins sign-up"
+      ],
+      "stub": false
+    },
+    {
+      "process_id": "ops-risk-monitoring",
+      "version": "1.0.0",
+      "domain": "risk",
+      "name": "Operational Risk Monitoring",
+      "summary": "Daily monitoring of key risk indicators",
+      "actors": [
+        "risk-manager",
+        "ctio"
+      ],
+      "triggers": [
+        "Scheduled — daily key-risk-indicator evaluation"
+      ],
+      "stub": false
+    },
+    {
+      "process_id": "payment-processing-process",
+      "version": "1.0.0",
+      "domain": "payments",
+      "name": "Payment Processing",
+      "summary": "FPS/SEPA payment lifecycle: initiate → screen → authorise → settle → notify",
+      "actors": [
+        "payment-operations",
+        "compliance-officer"
+      ],
+      "triggers": [
+        "Customer initiates a payment or transfer"
+      ],
+      "stub": false
+    },
+    {
+      "process_id": "referral-management",
+      "version": "1.0.0",
+      "domain": "crm",
+      "name": "Referral Management",
+      "summary": "Client-facing referral: capture referral -> validate eligibility -> track conversion -> apply incentive",
+      "actors": [
+        "customer-support"
+      ],
+      "triggers": [
+        "Customer submits a referral"
+      ],
+      "stub": true
+    },
+    {
+      "process_id": "risk-assessment",
+      "version": "1.0.0",
+      "domain": "risk",
+      "name": "Risk Assessment",
+      "summary": "Customer risk scoring at onboarding",
+      "actors": [
+        "risk-manager",
+        "kyc-analyst"
+      ],
+      "triggers": [
+        "Customer onboarding",
+        "Periodic risk review"
+      ],
+      "stub": false
+    },
+    {
+      "process_id": "roadmap-review",
+      "version": "1.0.0",
+      "domain": "strategy",
+      "name": "Product Roadmap Review",
+      "summary": "Monthly product review",
+      "actors": [
+        "ctio",
+        "ceo"
+      ],
+      "triggers": [
+        "Monthly product-review cadence"
+      ],
+      "stub": false
+    },
+    {
+      "process_id": "sanctions-screening-process",
+      "version": "1.0.0",
+      "domain": "compliance",
+      "name": "Sanctions Screening",
+      "summary": "OFAC/UN/EU/UK sanctions and PEP check",
+      "actors": [
+        "compliance-officer",
+        "mlro"
+      ],
+      "triggers": [
+        "Customer onboarding",
+        "Each inbound/outbound payment"
+      ],
+      "stub": false
+    },
+    {
+      "process_id": "sar-process",
+      "version": "1.0.0",
+      "domain": "compliance",
+      "name": "SAR Filing",
+      "summary": "POCA 2002 s.330 — Suspicious Activity Report lifecycle: file → MLRO approve → submit NCA",
+      "actors": [
+        "mlro",
+        "compliance-officer"
+      ],
+      "triggers": [
+        "Suspicious activity detected or flagged"
+      ],
+      "stub": false
+    },
+    {
+      "process_id": "spending-analytics",
+      "version": "1.0.0",
+      "domain": "analytics",
+      "name": "Spending Analytics",
+      "summary": "Client-facing spending breakdown / insights: aggregate by category -> compute insights -> render (PII-masked) -> surface",
+      "actors": [
+        "customer-support"
+      ],
+      "triggers": [
+        "Customer requests a spending breakdown or insights"
+      ],
+      "stub": true
+    },
+    {
+      "process_id": "statement-generation",
+      "version": "1.0.0",
+      "domain": "statements",
+      "name": "Statement Generation",
+      "summary": "Client-facing account statement: validate period -> compile transactions -> render (PII-masked) -> deliver",
+      "actors": [
+        "customer-support",
+        "treasury-manager"
+      ],
+      "triggers": [
+        "Customer requests a statement for a period"
+      ],
+      "stub": true
+    },
+    {
+      "process_id": "tx-monitoring-process",
+      "version": "1.0.0",
+      "domain": "compliance",
+      "name": "Transaction Monitoring",
+      "summary": "Real-time transaction screening via Jube probabilistic ML engine",
+      "actors": [
+        "mlro",
+        "compliance-officer",
+        "risk-manager"
+      ],
+      "triggers": [
+        "Each transaction event (real-time)"
+      ],
+      "stub": false
+    },
+    {
+      "process_id": "wallet-balance-inquiry",
+      "version": "1.0.0",
+      "domain": "wallet",
+      "name": "Wallet Balance Inquiry",
+      "summary": "Client-facing balance read: authenticate -> fetch balance -> return masked balance",
+      "actors": [
+        "customer-support",
+        "payment-operations"
+      ],
+      "triggers": [
+        "Customer requests their current balance"
+      ],
+      "stub": true
+    }
+  ]
+}

@@ -9,3 +9,20 @@ relationships:
   - name: Tri-Party Reconciliation Engine
     type: ApplicationComponent
     relation: Composition
+
+process_id: daily-recon-process
+version: "1.0.0"
+triggers:
+  - "Scheduled — cron at 23:50 UTC daily"
+steps:
+  - "Load internal (Midaz) balances"
+  - "Load external (CAMT.053) statements"
+  - "Match internal vs external"
+  - "Identify reconciliation breaks"
+  - "Investigate and resolve breaks"
+  - "Sign off the reconciliation"
+actors:
+  - treasury-manager
+  - payment-operations
+compliance_refs:
+  - "CASS-7.15.17R"
