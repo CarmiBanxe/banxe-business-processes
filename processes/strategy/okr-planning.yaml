@@ -5,3 +5,18 @@ domain: strategy
 name: OKR Planning
 documentation: |
   Quarterly OKR cycle. CEO sets company OKRs, teams derive key results.
+
+process_id: okr-planning
+version: "1.0.0"
+triggers:
+  - "Quarterly planning cycle"
+steps:
+  - "CEO sets company OKRs"
+  - "Teams derive their key results"
+  - "Align objectives across teams"
+  - "Mid-quarter review"
+  - "Score at quarter end"
+actors:
+  - ceo
+  - ctio
+compliance_refs: []

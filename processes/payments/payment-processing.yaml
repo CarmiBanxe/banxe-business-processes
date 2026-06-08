@@ -9,3 +9,19 @@ relationships:
   - name: Payment Service
     type: ApplicationComponent
     relation: Composition
+
+process_id: payment-processing-process
+version: "1.0.0"
+triggers:
+  - "Customer initiates a payment or transfer"
+steps:
+  - "Initiate the payment"
+  - "Sanctions / AML screen"
+  - "Authorise the payment"
+  - "Settle via the FPS/SEPA rail"
+  - "Notify the customer"
+actors:
+  - payment-operations
+  - compliance-officer
+compliance_refs:
+  - "PSR-2017"

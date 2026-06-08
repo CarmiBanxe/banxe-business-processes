@@ -1,0 +1,26 @@
+# Spending Analytics
+# STUB — manually authored to make the "see spending" client capability
+# resolvable (ADR-054 analytics/reporting client-facing mask). Not yet modelled
+# in ArchiMate. TODO: model in Archi Tool, then run `make import`; enrich against ADR-054.
+archimate_id: id-spending-analytics
+type: BusinessProcess
+domain: analytics
+name: Spending Analytics
+stub: true
+documentation: |
+  Client-facing spending breakdown / insights: aggregate by category -> compute
+  insights -> render (PII-masked) -> surface. Resolution target for the
+  "see spending" capability per ADR-054.
+process_id: spending-analytics
+version: "1.0.0"
+triggers:
+  - "Customer requests a spending breakdown or insights"
+steps:
+  - "Aggregate transactions by category"
+  - "Compute spending insights"
+  - "Render analytics with the ADR-054 client-facing mask (PII-masked)"
+  - "Surface the insights to the client"
+actors:
+  - customer-support
+compliance_refs:
+  - "ADR-054"

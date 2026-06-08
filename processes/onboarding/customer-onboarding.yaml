@@ -9,3 +9,22 @@ relationships:
   - name: KYC Service
     type: ApplicationComponent
     relation: Composition
+
+process_id: onboarding-process
+version: "1.0.0"
+triggers:
+  - "Prospective customer begins sign-up"
+steps:
+  - "Capture customer details"
+  - "Run KYC identity verification"
+  - "Risk-assess the customer"
+  - "Accept or decline"
+  - "Create the account"
+  - "Execute the customer agreement"
+actors:
+  - kyc-analyst
+  - compliance-officer
+  - customer-support
+compliance_refs:
+  - "EMR-2011-Reg.4"
+  - "MLR-2017"

@@ -9,3 +9,19 @@ relationships:
   - name: Safeguarding Service
     type: ApplicationComponent
     relation: Composition
+
+process_id: fin060-process
+version: "1.0.0"
+triggers:
+  - "Annual FCA reporting deadline"
+steps:
+  - "Aggregate safeguarding data"
+  - "Prepare the FIN060 return"
+  - "Internal review"
+  - "Submit via RegData"
+actors:
+  - treasury-manager
+  - compliance-officer
+compliance_refs:
+  - "FCA-FIN060"
+  - "CASS"

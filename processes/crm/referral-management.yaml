@@ -1,0 +1,26 @@
+# Referral Management
+# STUB — manually authored to make the Referral / CRM ("refer a friend") client
+# capability resolvable (ADR-049 Referral/CRM mask). Not yet modelled in ArchiMate.
+# TODO: model in Archi Tool, then run `make import`; enrich once the
+#       CRMProviderPort contract is pinned.
+archimate_id: id-referral-management
+type: BusinessProcess
+domain: crm
+name: Referral Management
+stub: true
+documentation: |
+  Client-facing referral: capture referral -> validate eligibility -> track
+  conversion -> apply incentive. Resolution target for the Referral/CRM
+  capability (CRMProviderPort) per ADR-049 (AUTO for routine; REVIEW for payout-linked).
+process_id: referral-management
+version: "1.0.0"
+triggers:
+  - "Customer submits a referral"
+steps:
+  - "Capture the referral (TODO: enrich against CRMProviderPort contract)"
+  - "Validate referral eligibility"
+  - "Track the conversion"
+  - "Apply the incentive (REVIEW for incentive/payout-linked actions)"
+actors:
+  - customer-support
+compliance_refs: []

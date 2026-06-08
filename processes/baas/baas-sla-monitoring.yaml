@@ -5,3 +5,17 @@ domain: baas
 name: BaaS SLA Monitoring
 documentation: |
   Tenant SLA tracking. Uptime, latency, error rate dashboards.
+
+process_id: baas-sla
+version: "1.0.0"
+triggers:
+  - "Continuous — real-time metric ingestion; threshold-breach alerts"
+steps:
+  - "Collect uptime, latency and error-rate metrics"
+  - "Evaluate metrics against the tenant SLA thresholds"
+  - "Raise a breach alert when a threshold is crossed"
+  - "Report SLA status to the tenant"
+actors:
+  - baas-partner-manager
+  - ctio
+compliance_refs: []

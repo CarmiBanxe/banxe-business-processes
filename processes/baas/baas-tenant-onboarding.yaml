@@ -9,3 +9,20 @@ relationships:
   - name: IAM Service
     type: ApplicationComponent
     relation: Flow
+
+process_id: baas-onboarding
+version: "1.0.0"
+triggers:
+  - "Tenant signs the BaaS partner agreement"
+steps:
+  - "Run KYB / due diligence on the prospective tenant"
+  - "Provision a sandbox environment"
+  - "Issue API keys"
+  - "Configure webhooks"
+  - "Promote the tenant to production"
+actors:
+  - baas-partner-manager
+  - compliance-officer
+  - kyc-analyst
+compliance_refs:
+  - "MLR-2017"

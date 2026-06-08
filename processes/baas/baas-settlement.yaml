@@ -9,3 +9,19 @@ relationships:
   - name: Ledger Service
     type: ApplicationComponent
     relation: Flow
+
+process_id: baas-settlement
+version: "1.0.0"
+triggers:
+  - "Scheduled — daily settlement window per tenant agreement"
+steps:
+  - "Aggregate the tenant's transactions for the settlement window"
+  - "Calculate fees due"
+  - "Compute revenue share"
+  - "Reconcile against the ledger"
+  - "Post the settlement to the tenant account"
+actors:
+  - baas-partner-manager
+  - treasury-manager
+  - payment-operations
+compliance_refs: []

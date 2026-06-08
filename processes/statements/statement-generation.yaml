@@ -1,0 +1,27 @@
+# Statement Generation
+# STUB — manually authored to make the "get statement" client capability
+# resolvable (ADR-055 statements client-facing mask). Not yet modelled in ArchiMate.
+# TODO: model in Archi Tool, then run `make import`; enrich against ADR-055.
+archimate_id: id-statement-generation
+type: BusinessProcess
+domain: statements
+name: Statement Generation
+stub: true
+documentation: |
+  Client-facing account statement: validate period -> compile transactions ->
+  render (PII-masked) -> deliver. Resolution target for the "get statement"
+  capability per ADR-055.
+process_id: statement-generation
+version: "1.0.0"
+triggers:
+  - "Customer requests a statement for a period"
+steps:
+  - "Validate the requested period"
+  - "Compile the transactions for the period"
+  - "Render the statement with the ADR-055 client-facing mask (PII-masked)"
+  - "Deliver the statement to the client"
+actors:
+  - customer-support
+  - treasury-manager
+compliance_refs:
+  - "ADR-055"

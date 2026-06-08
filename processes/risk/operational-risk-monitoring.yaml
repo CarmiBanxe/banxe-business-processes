@@ -9,3 +9,19 @@ relationships:
   - name: ClickHouse Audit DB
     type: TechnologyService
     relation: Serving
+
+process_id: ops-risk-monitoring
+version: "1.0.0"
+triggers:
+  - "Scheduled — daily key-risk-indicator evaluation"
+steps:
+  - "Collect key risk indicators"
+  - "Compare against risk-appetite thresholds"
+  - "Flag breaches"
+  - "Escalate to the risk owner"
+  - "Report"
+actors:
+  - risk-manager
+  - ctio
+compliance_refs:
+  - "Basel-III-Pillar-2"

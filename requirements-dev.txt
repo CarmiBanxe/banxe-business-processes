@@ -1,0 +1,3 @@
+# Dev/CI dependencies for the BPR resolvability tooling
+PyYAML>=6.0
+jsonschema>=4.0

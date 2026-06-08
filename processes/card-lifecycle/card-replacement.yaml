@@ -9,3 +9,18 @@ relationships:
   - name: Hyperswitch Card Vault
     type: ApplicationComponent
     relation: Composition
+
+process_id: card-replacement
+version: "1.0.0"
+triggers:
+  - "Card reported lost/stolen, damaged, or expiring"
+steps:
+  - "Block the old card"
+  - "Issue a new PAN via the Card Vault"
+  - "Migrate recurring mandates to the new PAN"
+  - "Deliver the replacement card"
+actors:
+  - card-operations
+  - customer-support
+compliance_refs:
+  - "PCI-DSS"
